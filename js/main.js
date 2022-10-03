@@ -1,27 +1,3 @@
-function getRandomNumberBetween(a, b) {
-	return Math.floor (Math.random () * (Math.abs(a - b) + 1)) + Math.min(a, b);
-}
-
-function checkStringLength(string, maxLength) {
-	return string.length <= maxLength;
-}
-
-function getShuffledArray(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
-function getRandomArrayElement(array) {
-	return array[getRandomNumberBetween(0, array.length - 1)];
-}
-
-function getRandomMessage() {
-	if (getRandomNumberBetween(0, 1) == 0) {
-		return getRandomArrayElement(MESSAGES);
-	} else {
-		getRandomArrayElement(MESSAGES) + ' ' = getRandomArrayElement(MESSAGES);
-	}
-}
-
 const USER_NAMES = [
 	"Александр",
 	"Максим",
@@ -44,20 +20,68 @@ const MESSAGES = [
 	"Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!"
 ];
 
-let id_array = getShuffledArray([...Array(25).keys()]);
-let comments_id_array = getShuffledArray([...Array(25).keys()]);
 
-const createPost = () => {
-	return {
-		id: id_array[id_array.length - 1],
-		url: `photos/${id_array.pop()}.jpg`,
-		description: "пост",
-		likes: getRandomNumberBetween(15, 200),
-		comments: {
-			id: comments_id_array.pop(),
+function getRandomNumberBetween(a, b) {
+	return Math.floor (Math.random () * (Math.abs(a - b) + 1)) + Math.min(a, b);
+}
+
+
+function checkStringLength(string, maxLength) {
+	return string.length <= maxLength;
+}
+
+
+function getRandomArrayElement(array) {
+	return array[getRandomNumberBetween(0, array.length - 1)];
+}
+
+
+function getRandomMessage() {
+	if (getRandomNumberBetween(0, 1) == 0) {
+		return getRandomArrayElement(MESSAGES);
+	} else {
+		return getRandomArrayElement(MESSAGES) + ' ' + getRandomArrayElement(MESSAGES);
+	}
+}
+
+
+function createCommentsArray(commentsCount) {
+	let comments = [];
+	let idComments = 0;
+
+	for (let i = 0; i < commentsCount; i++){
+		idComments++;
+		comments.push({
+			id: idComments,
 			avatar: `img/avatar-${getRandomNumberBetween(1, 6)}.svg`,
 			message: getRandomMessage(),
 			name: getRandomArrayElement(USER_NAMES),
-		}
+		})
+	}
+
+	return comments;
+}
+
+
+const createPost = (idNumber) => {
+	return {
+		id: idNumber,
+		url: `photos/${idNumber}.jpg`,
+		description: "пост",
+		likes: getRandomNumberBetween(15, 200),
+		comments: createCommentsArray(getRandomNumberBetween(1, 4))
 	};
 };
+
+
+const createPostList = (postsCount) => {
+	let posts = [];
+	for (let i = 1; i <= postsCount; i++) {
+		posts.push(createPost(i));
+	}
+
+	return posts;
+}
+
+
+let posts = createPostList(25);
