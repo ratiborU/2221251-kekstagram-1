@@ -1,4 +1,4 @@
-import {getRandomNumberBetween, checkStringLength, getRandomArrayElement} from "util.js";
+import {getRandomNumberBetween, checkStringLength, getRandomArrayElement} from "./util.js";
 
 const USER_NAMES = [
 	"Александр",
@@ -53,7 +53,7 @@ function createCommentsArray(commentsCount) {
 const createPost = (idNumber) => {
 	return {
 		id: idNumber,
-		url: `photos/${idNumber}.jpg`,
+		url: `photos/${idNumber % 25 == 0 ? 25 : idNumber % 25}.jpg`,
 		description: "пост",
 		likes: getRandomNumberBetween(15, 200),
 		comments: createCommentsArray(getRandomNumberBetween(1, 4))
