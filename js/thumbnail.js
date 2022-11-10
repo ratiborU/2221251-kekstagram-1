@@ -1,15 +1,25 @@
-var createPosts = function(posts, templatePost) {
-    var postsListFragment = document.createDocumentFragment();
+import {setBigPicture, createComment, createComments} from "./big-picture.js";
+
+
+let createPosts = function(posts, templatePost) {
+    let postsListFragment = document.createDocumentFragment();
+    let bigPicture = document.querySelector('.big-picture');
+    closeBigPictureButton(bigPicture);
 
     for (let post of posts) {
         var newPhoto = templatePost.cloneNode(true);
+        let pictureImg = newPhoto.querySelector('.picture__img');
+        let pictureComments = newPhoto.querySelector('.picture__comments');
+        let pictureLikes = newPhoto.querySelector('.picture__likes');
 
-        var pictureImg = newPhoto.querySelector('.picture__img');
-        var pictureComments = newPhoto.querySelector('.picture__comments');
-        var pictureLikes = newPhoto.querySelector('.picture__likes');
         pictureImg.src = post.url;
         pictureComments.textContent = post.comments.length;
         pictureLikes.textContent = post.likes;
+        let setImg = setBigPicture(newPhoto, post);
+
+        newPhoto.addEventListener('click', function() {
+            setImg();
+        });
 
         postsListFragment.append(newPhoto);
     }
@@ -18,7 +28,21 @@ var createPosts = function(posts, templatePost) {
 };
 
 
-var photo = document.querySelector('#picture').content;
-var templatePhoto = photo.querySelector('.picture').cloneNode(true);
+let closeBigPictureButton = function(bigPicture) {
+    let closeButton = bigPicture.querySelector('.big-picture__cancel');
+    closeButton.addEventListener('click', function() {
+        bigPicture.classList.add('hidden');
+    });
+
+    document.addEventListener('keydown', function (evt) {
+        if (evt.keyCode == 27) {
+            bigPicture.classList.add('hidden');
+        }
+    });
+};
+
+
+let photo = document.querySelector('#picture').content;
+let templatePhoto = photo.querySelector('.picture').cloneNode(true);
 
 export {createPosts, templatePhoto};
