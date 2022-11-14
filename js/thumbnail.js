@@ -1,4 +1,5 @@
 import {setBigPicture, createComment, createComments} from "./big-picture.js";
+import {isEscapeKey} from './util.js';
 
 
 let createPosts = function(posts, templatePost) {
@@ -35,7 +36,7 @@ let closeBigPictureButton = function(bigPicture) {
     });
 
     document.addEventListener('keydown', function (evt) {
-        if (evt.keyCode == 27) {
+        if (isEscapeKey(evt)) {
             bigPicture.classList.add('hidden');
         }
     });
