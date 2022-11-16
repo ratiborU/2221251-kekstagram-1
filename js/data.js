@@ -1,5 +1,6 @@
 import {getRandomNumberBetween, checkStringLength, getRandomArrayElement} from "./util.js";
 
+
 const USER_NAMES = [
 	"Александр",
 	"Максим",
@@ -13,6 +14,7 @@ const USER_NAMES = [
 	"Алиса",
 ];
 
+
 const MESSAGES = [
 	"Всё отлично!",
 	"В целом всё неплохо. Но не всё.",
@@ -23,7 +25,7 @@ const MESSAGES = [
 ];
 
 
-function getRandomMessage() {
+const getRandomMessage = function() {
 	if (getRandomNumberBetween(0, 1) == 0) {
 		return getRandomArrayElement(MESSAGES);
 	} else {
@@ -32,7 +34,7 @@ function getRandomMessage() {
 }
 
 
-function createCommentsArray(commentsCount) {
+const createCommentsArray = function(commentsCount) {
 	let comments = [];
 	let idComments = 0;
 
@@ -50,18 +52,18 @@ function createCommentsArray(commentsCount) {
 }
 
 
-const createPost = (idNumber) => {
+const createPost = function(idNumber) {
 	return {
 		id: idNumber,
-		url: `photos/${idNumber % 25 == 0 ? 25 : idNumber % 25}.jpg`,
+		url: `photos/${getRandomNumberBetween(1, 25)}.jpg`,  // url: `photos/${idNumber % 25 == 0 ? 25 : idNumber % 25}.jpg`,
 		description: "пост",
 		likes: getRandomNumberBetween(15, 200),
-		comments: createCommentsArray(getRandomNumberBetween(1, 4))
+		comments: createCommentsArray(getRandomNumberBetween(1, 12))
 	};
 };
 
 
-const createPostList = (postsCount) => {
+const createPostList = function(postsCount) {
 	let posts = [];
 	for (let i = 1; i <= postsCount; i++) {
 		posts.push(createPost(i));
@@ -69,5 +71,6 @@ const createPostList = (postsCount) => {
 
 	return posts;
 };
+
 
 export {createPostList};
