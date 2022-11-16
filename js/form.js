@@ -9,21 +9,6 @@ const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 
 
-loadButton.addEventListener('click', function() {
-    openLoadForm();
-});
-
-
-hashtagField.addEventListener('keydown', function(evt) {
-    onFocusPreventClose(evt);
-});
-
-
-commentField.addEventListener('keydown', function (evt) {
-    onFocusPreventClose(evt);
-});
-
-
 const onCloseButton = function () {
     closeLoadForm();
 };
@@ -63,3 +48,8 @@ const closeLoadForm = function() {
     document.removeEventListener('keydown', onCloseEsc);
     form.removeEventListener('submit', onSubmitButton);
 };
+
+
+loadButton.addEventListener('click', openLoadForm);
+hashtagField.addEventListener('keydown', onFocusPreventClose);
+commentField.addEventListener('keydown', onFocusPreventClose);
