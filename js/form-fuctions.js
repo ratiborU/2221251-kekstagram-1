@@ -12,6 +12,7 @@ const onFocusPreventClose = function (evt) {
 
 
 const checkCorrectHashtags = function (hashtagString) {
+    hashtagString = hashtagString.toLowerCase();
     let hashsList = hashtagString.split(' ');
     if (hashtagString.length == 0) {
         return true;

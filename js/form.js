@@ -1,4 +1,5 @@
 import {isEscapeKey} from './util.js';
+import {resetPhotoParametrs} from "./scale.js";
 import {onFocusPreventClose, checkCorrectHashtags} from './form-fuctions.js';
 
 const form = document.querySelector('.img-upload__form');
@@ -47,6 +48,8 @@ const closeLoadForm = function() {
     closeButton.removeEventListener('click', onCloseButton);
     document.removeEventListener('keydown', onCloseEsc);
     form.removeEventListener('submit', onSubmitButton);
+
+    resetPhotoParametrs();
 };
 
 
