@@ -2,6 +2,7 @@ import { createPostList } from "./data.js";
 import {createPosts} from "./thumbnail.js";
 import "./big-picture.js";
 import "./form.js";
+import "./scale.js";
 
 
 let pictures = document.querySelector('.pictures');
