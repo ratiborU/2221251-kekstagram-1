@@ -1,12 +1,12 @@
-import { createPostList } from "./data.js";
-import {createPosts} from "./thumbnail.js";
+import {showUnloadingErrorMessage} from "./util.js";
+import {renderPosts} from "./thumbnail.js";
+import {sendData, getData} from "./fetch.js";
 import "./big-picture.js";
 import "./form.js";
-import "./scale.js";
 
 
-let pictures = document.querySelector('.pictures');
-let posts = createPostList(25);
+getData(renderPosts, showUnloadingErrorMessage);
 
 
-pictures.append(createPosts(posts));
+
+
