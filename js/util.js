@@ -36,7 +36,7 @@ const showUnloadingErrorMessage = function (message) {
 
   setTimeout(() => {
     alertContainer.remove();
-  }, ALERT_SHOW_TIME);
+  }, 5000);
 }
 
 
