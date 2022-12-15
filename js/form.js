@@ -1,6 +1,7 @@
 import {isEscapeKey} from './util.js';
 import {resetPhotoParametrs} from "./scale.js";
 import {sendData, getData} from "./fetch.js";
+import {uploadUserPicture} from './upload-picture.js';
 import {showSuccessMessage, showErrorMessage} from "./upload-message.js";
 import {onFocusPreventClose, checkCorrectHashtags} from './form-fuctions.js';
 
@@ -10,6 +11,9 @@ const loadScreen = document.querySelector('.img-upload__overlay');
 const hashtagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 const closeButton = loadScreen.querySelector('.img-upload__cancel');
+
+const uploadingClose = form.querySelector('#upload-cancel');
+//loadScreen.classList.remove('hidden');
 
 
 const onCloseButton = function () {
@@ -37,6 +41,7 @@ const onSubmitButton = function (evt) {
 const openLoadForm = function() {
   loadScreen.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  uploadUserPicture(loadButton.files[0]);
 
   closeButton.addEventListener('click', onCloseButton);
   document.addEventListener('keydown', onCloseEsc);
@@ -57,6 +62,6 @@ const closeLoadForm = function() {
 };
 
 
-loadButton.addEventListener('click', openLoadForm);
+loadButton.addEventListener('change', openLoadForm);
 hashtagField.addEventListener('keydown', onFocusPreventClose);
 commentField.addEventListener('keydown', onFocusPreventClose);
