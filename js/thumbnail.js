@@ -27,18 +27,15 @@ const createPosts = function(posts) {
 	for (let post of posts) {
 		postsListFragment.append(getSettedUpPhoto(post));
 	}
-
 	return postsListFragment;
 };
 
 
 const createPost = function(post) {
-	var newPhoto = templatePost.cloneNode(true);
+	let newPhoto = templatePost.cloneNode(true);
 	newPhoto.querySelector('.picture__img').src = post.url;
 	newPhoto.querySelector('.picture__comments').textContent = post.comments.length;
 	newPhoto.querySelector('.picture__likes').textContent = post.likes;
-  //newPhoto.classList.add('picture');
-
 	return newPhoto;
 };
 

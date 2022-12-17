@@ -1,3 +1,5 @@
+import {clearForm} from './form-fuctions.js';
+
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const successMessage = successTemplate.cloneNode(true);
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
@@ -23,6 +25,7 @@ const onErrorClick = function () {
 const showSuccessMessage = function () {
   successMessage.classList.remove('hidden');
   successMessage.addEventListener('click', onSuccessClick, {once: true});
+  clearForm();
 };
 
 

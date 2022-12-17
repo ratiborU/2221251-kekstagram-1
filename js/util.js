@@ -1,3 +1,5 @@
+const MESSAGE_DISPLAY_TIME = 5000;
+
 const getRandomNumberBetween = function (a, b) {
 	return Math.floor (Math.random () * (Math.abs(a - b) + 1)) + Math.min(a, b);
 }
@@ -36,7 +38,7 @@ const showUnloadingErrorMessage = function (message) {
 
   setTimeout(() => {
     alertContainer.remove();
-  }, 5000);
+  }, MESSAGE_DISPLAY_TIME);
 }
 
 

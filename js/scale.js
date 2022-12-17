@@ -1,3 +1,6 @@
+const PERCENT_STEP = 25;
+
+
 const scaleValue = document.querySelector('.scale__control--value');
 const form = document.querySelector('.img-upload__scale');
 const image = document.querySelector('.img-upload__preview img');
@@ -8,8 +11,9 @@ const effectsList = document.querySelector('.effects__list');
 const effectValue = document.querySelector('.effect-level__value');
 const defaultPhotoSrc = 'img/upload-default-image.jpg';
 
-const PERCENT_STEP = 25;
+
 sliderWrapper.classList.add('hidden');
+
 
 const effects = {
   chrome: {

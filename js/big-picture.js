@@ -75,7 +75,7 @@ const addComments = function(comments) {
     });
     commentsCountText.innerHTML = `${commentsCount} из <span class="comments-count">${comments.length}</span> комментариев`;
         
-    if (comments.length == commentsCount) {
+    if (comments.length === commentsCount) {
       commentsLoadButton.classList.add('hidden');
     } else {
       commentsLoadButton.classList.remove('hidden');
